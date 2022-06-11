@@ -12,7 +12,27 @@ SQLAlchemy = "^1.4.37"
 aiomysql = "^0.1.1"
 
 [tool.poetry.dev-dependencies]
+pysen = "^0.10.2"
+black = "^22.3.0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+mypy = "^0.961"
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pysen]
+version = "0.10.2"
+
+[tool.pysen.lint]
+enable_black = true
+enable_flake8 = true
+enable_isort = true
+enable_mypy = false
+mypy_preset = "strict"
+line_length = 88
+py_version = "py39"
+[[tool.pysen.lint.mypy_targets]]
+  paths = ["."]

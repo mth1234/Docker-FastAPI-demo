@@ -1,4 +1,5 @@
 from typing import Optional
+
 from pydantic import BaseModel, Field
 
 
@@ -8,7 +9,7 @@ class TaskBase(BaseModel):
 
 class TaskCreate(TaskBase):
     pass
-    
+
 
 class TaskCreateResponse(TaskCreate):
     id: int
