@@ -1,18 +1,18 @@
-# python3.9‚ÌƒCƒ[ƒW‚ğƒ_ƒEƒ“ƒ[ƒh
+# python3.9 ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 FROM python:3.9-buster
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /src
 
-# pip‚ğg‚Á‚Äpoetry‚ğƒCƒ“ƒXƒg[ƒ‹
+# pip ã‚’ä½¿ã£ã¦ poetry ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
 RUN pip install poetry
 
-# poetry‚Ì’è‹`ƒtƒ@ƒCƒ‹‚ğƒRƒs[ (‘¶İ‚·‚éê‡)
+# poetry ã®å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ (å­˜åœ¨ã™ã‚‹å ´åˆ)
 COPY pyproject.toml* poetry.lock* ./
 
-# poetry‚Åƒ‰ƒCƒuƒ‰ƒŠ‚ğƒCƒ“ƒXƒg[ƒ‹ (pyproject.toml‚ªŠù‚É‚ ‚éê‡)
+# poetry ã§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ« (pyproject.toml ãŒæ—¢ã«ã‚ã‚‹å ´åˆ)
 RUN poetry config virtualenvs.in-project true
 RUN if [ -f pyproject.toml ]; then poetry install; fi
 
-# uvicorn‚ÌƒT[ƒo[‚ğ—§‚¿ã‚°‚é
+# uvicorn ã®ã‚µãƒ¼ãƒãƒ¼ã‚’ç«‹ã¡ä¸Šã’ã‚‹
 ENTRYPOINT ["poetry", "run", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--reload"]
