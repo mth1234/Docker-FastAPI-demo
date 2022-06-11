@@ -1,9 +1,9 @@
-version: '3'
+version: '3' # compose ファイルの書式バージョン
 services:
-  demo-app:
-    build: .
-    volumes:
+  demo-app: # demo-app という名前でサービスを定義
+    build: . # 指定パスの Dockerfile を参照
+    volumes: # コンテナ内で作成したデータの永続化用
       - .dockervenv:/src/.venv
       - .:/src
     ports:
-      - 8000:8000  #
+      - 8000:8000  # ホスト:コンテナ のポートを紐づけ
